@@ -81,6 +81,17 @@ public class CP3LinkedList<E> {
         return size;
     }
 
+    public int recursiveSize() {
+         return recursiveSize(first);
+    }
+
+    private int recursiveSize(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + recursiveSize(root.next);
+    }
+
     private void decrementSize() {
         if (size == 0)
             return;
@@ -112,6 +123,16 @@ public class CP3LinkedList<E> {
             System.out.println(current.data);
             current = current.next;
         }
+    }
+
+    public void printRecursive() {
+        printRecursive(first);
+    }
+
+    private void printRecursive(Node root) {
+        if (root == null) return;
+        System.out.println(root.data);
+        printRecursive(root.next);
     }
 
     private class Node {

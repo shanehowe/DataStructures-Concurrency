@@ -30,7 +30,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
         queue.add(root);
         while (!queue.isEmpty()) {
             Node node = queue.poll();
-            assert node != null;
             if (node.data.compareTo(element) == 0) return true;
             if (node.left != null) queue.add(node.left);
             if (node.right != null) queue.add(node.right);
@@ -60,9 +59,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
     private boolean contains(Node root, E element) {
         if (root == null) return false;
 
-        if (root.data.compareTo(element) == 0) return true;
+        int comparisonResult = root.data.compareTo(element);
 
-        if (root.data.compareTo(element) < 0) return contains(root.right, element);
+        if (comparisonResult == 0) return true;
+        if (comparisonResult < 0) return contains(root.right, element);
         else return contains(root.left, element);
     }
 
